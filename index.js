@@ -1,7 +1,18 @@
 const linebot = require('linebot');
 const express = require('express');
 const bodyParser = require('body-parser');
+const firebase = require('firebase');
 
+//firebase initialize
+var config = {
+    apiKey: "AIzaSyCv4o01sEGSFPj6q5WglthKYF2_p_60Qkg",
+    authDomain: "line-bot-c1670.firebaseapp.com",
+    databaseURL: "https://line-bot-c1670.firebaseio.com",
+    projectId: "line-bot-c1670",
+    storageBucket: "line-bot-c1670.appspot.com",
+    messagingSenderId: "369577845897"
+  };
+firebase.initializeApp(config);
 const bot = linebot({
 	channelId: "1511273166",
 	channelSecret: "1e292d52e597d4ece66b0e6a3a553f53",
@@ -11,6 +22,10 @@ const bot = linebot({
 bot.on('message', function (event) {
   console.log("MESSAGE::",event.message.text)
 	event.reply(event.message.text).then(function (data) {
+    var postsRef = ref.child("posts");
+    postsRef.push().set({
+      message: event.message.text
+    });
 		// success
     console.log("SENT")
 	}).catch(function (error) {
