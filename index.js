@@ -22,7 +22,7 @@ const bot = linebot({
 bot.on('message', function (event) {
   console.log("MESSAGE::",event.message.text)
 	event.reply(event.message.text).then(function (data) {
-    var postsRef = ref.child("posts");
+    var postsRef = firebase.database().ref('line').child("posts");
     postsRef.push().set({
       message: event.message.text
     });
