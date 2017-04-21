@@ -84,7 +84,8 @@ bot.on('message', function(event) {
   const confirm = ['', 'Your name is', 'Your nick name is', 'Your student ID is', 'carbr', 'colo', 'vehi']
 
   event.source.profile().then((profile)=>{
-    return test(profile).then((user,userId)=>{
+    return test(profile).then((data)=>{
+      const {user,userId} = data
       console.log('2:',user,userId)
       const postsRef = firebase.database().ref('line/user').child(userId);
       const reply = (text) => event.reply(text)
