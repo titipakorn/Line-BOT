@@ -268,6 +268,6 @@ bot.on('message', async function(event) {
 
 });
 
-bot.listen('/linewebhook', process.env.PORT || 3000, function() {
+bot.listen('/linewebhook', process.env.PORT || 80, function() {
   console.log('LineBot is running.');
 });
