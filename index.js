@@ -74,7 +74,7 @@ const test = (profile) => {
   return new Promise((resolve, reject) => {
     firebase.database().ref('line/user').child(profile.userId).once("value", function(data) {
       console.log('1:',data.val(),data.getKey())
-      resolve(data.val(),data.getKey())
+      resolve({user:data.val(),userId:data.getKey()})
     })
   });
 }
