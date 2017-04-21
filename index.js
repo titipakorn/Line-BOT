@@ -86,8 +86,8 @@ bot.on('message', function(event) {
   event.source.profile().then((profile)=>{
     return test(profile).then((data)=>{
       const {user,userId} = data
-      console.log('2:',user,userId)
       const postsRef = firebase.database().ref('line/user').child(userId);
+      const postRef = firebase.database().ref('line/posts');
       const reply = (text) => event.reply(text)
         if(!user){
           postsRef.update({
@@ -262,8 +262,13 @@ bot.on('message', function(event) {
             }
           }else{
             //completed register
+            if(userId=='Uaa1caf0024c1c70e9fa0fe8aa34bd8fa'){
             bot.push('Ue89cc6d57ead96006d38a18c1f88b85b',event.message.text)
             reply("SENT")
+          }else{
+            bot.push('Uaa1caf0024c1c70e9fa0fe8aa34bd8fa',event.message.text)
+            reply("SENT")
+          }
           }
         }
       // return user
