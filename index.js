@@ -73,6 +73,7 @@ const confirmtemplate = (event, qcode, question, answer) => {
 const test = (profile) => {
   return new Promise((resolve, reject) => {
     firebase.database().ref('line/user').child(profile.userId).once("value", function(data) {
+      console.log('1:',data.val(),data.getKey())
       resolve(data.val(),data.getKey())
     })
   });
@@ -84,6 +85,7 @@ bot.on('message', function(event) {
 
   event.source.profile().then((profile)=>{
     return test(profile).then((user,userId)=>{
+      console.log('2:',user,userId)
       const postsRef = firebase.database().ref('line/user').child(userId);
       const reply = (text) => event.reply(text)
         if(!user){
