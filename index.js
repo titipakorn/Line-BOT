@@ -15,9 +15,9 @@ var config = {
 };
 firebase.initializeApp(config);
 const bot = linebot({
-  channelId: "1511273166",
-  channelSecret: "1e292d52e597d4ece66b0e6a3a553f53",
-  channelAccessToken: "wpiByFfMb6rXbEG9X2kM2vo6XH8Et2N1EfH6up/4DVEnfbGiiEuAYBSIVMzKi38R62i62M3ImCK3OofegCvu55gVQ3q+CoSVaEamgtgTCvQKxiFgY7STL9jZk02/Sx4JS6FFEu4UqYV7RKZWMOhGlwdB04t89/1O/w1cDnyilFU=",
+  channelId: "1485947520",
+  channelSecret: "aecb64016ab41c179f0b31f8859fcdfe",
+  channelAccessToken: "r6RJIufV4VqrvXoCUH9+URr4r0hlxp0YMIONbgN9EIbJs0afiXswzXb7wnFEHVyt6QiK4sYfuN5ICtoASmba25wkSLNwVaNV5PSePj2rDknU5mf0sOa/8vEqn/nt3MuqHaGjtmWLwnxsVd+kRxGVkAdB04t89/1O/w1cDnyilFU=",
 });
 
 // bot.on('follow', async function(event) {
