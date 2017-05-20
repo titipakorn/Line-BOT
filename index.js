@@ -420,9 +420,9 @@ bot.on('message', function(event) {
                 }
           }
         }else{
-          if(user.step[1]==2){
+          if(user.step[1]=='2'){
             postsRef.update({
-              step: `F${parseInt(event.message.text[1])-2}`,
+              step: `F${parseInt(user.step[1])-2}`,
             })
             menuquestion(event,`F${parseInt(user.step[1])-2}`,'Question',f1[parseInt(user.step[1])-2],f1ans[parseInt(user.step[1])-2])
           }
