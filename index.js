@@ -465,7 +465,7 @@ bot.on('message', function(event) {
           switch(event.message.text){
             case 'Menu1':{
               if(share.userId){
-                reply('you're sharing)
+                reply('youre sharing')
               }else{
                 menuquestion(event,'F0','Question',f1[0],f1ans[0])
                 postsRef.update({
