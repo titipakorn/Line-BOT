@@ -464,14 +464,10 @@ bot.on('message', function(event) {
         } else {
           switch(event.message.text){
             case 'Menu1':{
-              if(share[userId]){
-                reply('you're sharing)
-              }else{
                 menuquestion(event,'F0','Question',f1[0],f1ans[0])
                 postsRef.update({
                   step: 'F0'
                 })
-              }
                 break
             }
             case 'Menu2':{
