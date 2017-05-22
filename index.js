@@ -464,7 +464,7 @@ bot.on('message', function(event) {
         } else {
           switch(event.message.text){
             case 'Menu1':{
-              console.log(share.userId,share)
+              console.log(share.userId,share,userId,share[userId])
               if(share.userId){
                 reply('youre sharing')
               }else{
