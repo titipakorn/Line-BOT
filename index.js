@@ -521,33 +521,33 @@ bot.on('message', function(event) {
         } else {
           switch(event.message.text){
             case 'Menu1':{
-              if("undefined" === share[userId]){
-                menuquestion(event,'F0','Question',f1[0],f1ans[0])
-                postsRef.update({
-                  step: 'F0'
-                })
-              }else{
+              if(share && share[userId]){
                 postsRef.update({
                   step: 'C1'
                 })
                     event.reply({
-          type: 'template',
+        	type: 'template',
           altText: 'this is a buttons template',
-          template: {
-            type: 'buttons',
-            title: 'Menu',
-            text: 'Please select',
-            actions: [{
-              type: 'message',
-              label: 'Start going',
-              text:'C1:start'
-            }, {
-              type: 'message',
-              label: `Cancel sharing`,
-              text:'C1:cancel'
-            }]
-          }
+        	template: {
+        		type: 'buttons',
+        		title: 'Menu',
+        		text: 'Please select',
+        		actions: [{
+        			type: 'message',
+        			label: 'Start going',
+        			text:'C1:start'
+        		}, {
+        			type: 'message',
+        			label: `Cancel sharing`,
+        			text:'C1:cancel'
+        		}]
+        	}
         });
+              }else{
+                menuquestion(event,'F0','Question',f1[0],f1ans[0])
+                postsRef.update({
+                  step: 'F0'
+                })
               }
                 break
             }
