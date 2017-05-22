@@ -469,6 +469,7 @@ bot.on('message', function(event) {
                         })
                         event.reply({
               type: 'template',
+              altText: 'this is a buttons template',
               template: {
                 type: 'buttons',
                 title: 'Menu',
@@ -493,6 +494,7 @@ bot.on('message', function(event) {
                         }else{
                           event.reply({
                 type: 'template',
+              altText: 'this is a buttons template',
                 template: {
                   type: 'buttons',
                   title: 'Menu',
@@ -511,7 +513,9 @@ bot.on('message', function(event) {
                 }
           }
         }else{
-          confirmtemplate(event, 'C0', c1[user.step[1]],'',1)
+          postsRef.update({
+            step:null,
+          })
         }
         }
         } else {
@@ -523,6 +527,7 @@ bot.on('message', function(event) {
                 })
                     event.reply({
         	type: 'template',
+          altText: 'this is a buttons template',
         	template: {
         		type: 'buttons',
         		title: 'Menu',
