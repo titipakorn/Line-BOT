@@ -395,7 +395,7 @@ bot.on('message', function(event) {
                     {
                       postsRef.update({
                         step: `F${parseInt(event.message.text[1])+1}`,
-                        temp: Object.assign(user.temp,{time: f1match[event.message.text[1]][msg],timestamp:moment().unix()})
+                        temp: Object.assign(user.temp,{time: f1match[event.message.text[1]][msg],timestamp:firebase.database.ServerValue.TIMESTAMP})
                       })
                       confirmtemplate(event, `F${parseInt(user.step[1])+1}`, `Source: ${user.temp.source} in next ${f1ans[event.message.text[1]][msg]}, Destination: ${user.temp.destination}`,'',1)
                       break
