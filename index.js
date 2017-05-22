@@ -359,7 +359,7 @@ bot.on('message', function(event) {
                         matchedkey: refid
                       })
                       bot.push(msg,`${user.nickname} wants to go with you`)
-                      bot.push(userId,`${uprofile[msg].nickname} is your driver, here is his/her car information: brand: ${uprofile[msg].carbrand}, color: ${uprofile[msg].carcolor}, model: ${uprofile[msg].carmodel}, license plate: ${uprofile[msg].carregistration}, Meeting time: ${moment(moment(share[msg].timestamp) + (6e4 * share[msg].time)) .format("hh:mm A")}`)
+                      bot.push(userId,`${uprofile[msg].nickname} is your driver, here is his/her car information: brand: ${uprofile[msg].carbrand}, color: ${uprofile[msg].carcolor}, model: ${uprofile[msg].carmodel}, license plate: ${uprofile[msg].carregistration}, Meeting time: ${moment(moment(share[msg].timestamp) + (6e4 * share[msg].time)+(3.6e+6*7)).format("hh:mm A")}`)
                       reply('Matching is completed')
                       //confirmtemplate(event, `F${parseInt(user.step[1])+1}`, `Source: ${user.temp.source} in next ${f1ans[event.message.text[1]][msg]}, Destination: ${user.temp.destination}`,'',1)
                     }else{
@@ -395,7 +395,7 @@ bot.on('message', function(event) {
                     {
                       postsRef.update({
                         step: `F${parseInt(event.message.text[1])+1}`,
-                        temp: Object.assign(user.temp,{time: f1match[event.message.text[1]][msg],timestamp:moment().valueOf()})
+                        temp: Object.assign(user.temp,{time: f1match[event.message.text[1]][msg],timestamp:firebase.database.ServerValue.TIMESTAMP})
                       })
                       confirmtemplate(event, `F${parseInt(user.step[1])+1}`, `Source: ${user.temp.source} in next ${f1ans[event.message.text[1]][msg]}, Destination: ${user.temp.destination}`,'',1)
                       break
