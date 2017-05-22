@@ -456,20 +456,57 @@ bot.on('message', function(event) {
                   }
                   case '1':
                     {
-                      if(msg!='no'){
+                      if(msg!='start'){
                         shareRef.child(userId).remove()
                         postsRef.update({
                           step:null,
                         })
                         reply('Your cancelation is completed')
                       }else{
+                        shareRef.child(userId).remove()
                         postsRef.update({
-                          step: null
+                          step: 'C2'
                         })
-                        reply('Type again to select a menu');
+                        event.reply({
+              type: 'template',
+              template: {
+                type: 'buttons',
+                title: 'Menu',
+                text: 'Click here when you arrive at the destination',
+                actions: [{
+                  type: 'message',
+                  label: 'Start going',
+                  text:'C2:end'
+                }]
+              }
+            });
                       }
                       break
                     }
+                    case '2':
+                      {
+                        if(msg=='end'){
+                          postsRef.update({
+                            step:null,
+                          })
+                          reply('Your journey is finished! Thanks for making SIIT better')
+                        }else{
+                          event.reply({
+                type: 'template',
+                template: {
+                  type: 'buttons',
+                  title: 'Menu',
+                  text: 'Click here when you arrive at the destination',
+                  actions: [{
+                    type: 'message',
+                    label: 'Start going',
+                    text:'C2:end'
+                  }]
+                }
+              });
+                        }
+                        break
+                      }
 
                 }
           }
@@ -484,7 +521,23 @@ bot.on('message', function(event) {
                 postsRef.update({
                   step: 'C1'
                 })
-                confirmtemplate(event, 'C1', c1[1],'',1)
+                    event.reply({
+        	type: 'template',
+        	template: {
+        		type: 'buttons',
+        		title: 'Menu',
+        		text: 'Please select',
+        		actions: [{
+        			type: 'message',
+        			label: 'Start going',
+        			text:'C1:start'
+        		}, {
+        			type: 'message',
+        			label: `Cancel sharing`,
+        			text:'C1:cancel'
+        		}]
+        	}
+        });
               }else{
                 menuquestion(event,'F0','Question',f1[0],f1ans[0])
                 postsRef.update({
@@ -495,7 +548,6 @@ bot.on('message', function(event) {
             }
             case 'Menu2':{
               if(user.matchedwith){
-
                 postsRef.update({
                   step: 'C0'
                 })
