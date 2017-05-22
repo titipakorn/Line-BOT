@@ -130,7 +130,7 @@ bot.on('message', function(event) {
   const f1match = [['Bangkadi','Rangsit'],[15,30,45,60]]
   const n1 = ['What is your destination?','Please select share riding']
   const n1ans = [['Rangsit','Bangkadi']]
-  const c1 = ['Do you want to cancel matching?']
+  const c1 = ['Do you want to cancel matching?','Do you want to cancel your sharing?']
   event.source.profile().then((profile)=>{
     return getUser(profile).then((data)=>{
       const {user,userId,share,uprofile} = data
@@ -454,6 +454,22 @@ bot.on('message', function(event) {
                     }
                     break
                   }
+                  case '1':
+                    {
+                      if(msg!='no'){
+                        shareRef.child(userId).remove()
+                        postsRef.update({
+                          step:null,
+                        })
+                        reply('Your cancelation is completed')
+                      }else{
+                        postsRef.update({
+                          step: null
+                        })
+                        reply('Type again to select a menu');
+                      }
+                      break
+                    }
 
                 }
           }
@@ -464,9 +480,11 @@ bot.on('message', function(event) {
         } else {
           switch(event.message.text){
             case 'Menu1':{
-              console.log(share.userId,share,userId,share[userId])
-              if(share.userId){
-                reply('youre sharing')
+              if(share[userId]){
+                postsRef.update({
+                  step: 'C1'
+                })
+                confirmtemplate(event, 'C1', c1[1],'',1)
               }else{
                 menuquestion(event,'F0','Question',f1[0],f1ans[0])
                 postsRef.update({
