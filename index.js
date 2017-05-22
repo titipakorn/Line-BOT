@@ -501,7 +501,7 @@ bot.on('message', function(event) {
                   text: 'Click here when you arrive at the destination',
                   actions: [{
                     type: 'message',
-                    label: 'Start going',
+                    label: 'Arrive',
                     text:'C2:end'
                   }]
                 }
@@ -521,33 +521,33 @@ bot.on('message', function(event) {
         } else {
           switch(event.message.text){
             case 'Menu1':{
-              if(share[userId]){
-                postsRef.update({
-                  step: 'C1'
-                })
-                    event.reply({
-        	type: 'template',
-          altText: 'this is a buttons template',
-        	template: {
-        		type: 'buttons',
-        		title: 'Menu',
-        		text: 'Please select',
-        		actions: [{
-        			type: 'message',
-        			label: 'Start going',
-        			text:'C1:start'
-        		}, {
-        			type: 'message',
-        			label: `Cancel sharing`,
-        			text:'C1:cancel'
-        		}]
-        	}
-        });
-              }else{
+              if("undefined" === share[userId]){
                 menuquestion(event,'F0','Question',f1[0],f1ans[0])
                 postsRef.update({
                   step: 'F0'
                 })
+              }else{
+                postsRef.update({
+                  step: 'C1'
+                })
+                    event.reply({
+          type: 'template',
+          altText: 'this is a buttons template',
+          template: {
+            type: 'buttons',
+            title: 'Menu',
+            text: 'Please select',
+            actions: [{
+              type: 'message',
+              label: 'Start going',
+              text:'C1:start'
+            }, {
+              type: 'message',
+              label: `Cancel sharing`,
+              text:'C1:cancel'
+            }]
+          }
+        });
               }
                 break
             }
@@ -565,9 +565,6 @@ bot.on('message', function(event) {
             }
               break
             }
-            case 'Menu3':{
-
-            }
             default: {
               event.reply({
   	type: 'template',
@@ -584,10 +581,6 @@ bot.on('message', function(event) {
   			type: 'message',
   			label: `Find a ride`,
   			text:'Menu2'
-  		}, {
-  			type: 'message',
-  			label: 'Edit your profile',
-  			text: 'Menu3'
   		}]
   	}
   });
